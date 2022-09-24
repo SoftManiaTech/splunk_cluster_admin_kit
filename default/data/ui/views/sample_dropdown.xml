@@ -1,0 +1,34 @@
+<form version="1.1">
+    <label>Sample dropdown</label>
+
+    <!-- define master search template, with replacement tokens delimited with $ -->
+    <search id="sample_search">
+      <query>
+        index=sample "$to$"
+      </query>
+    </search>
+
+    <fieldset>
+        <!-- Define a simple dropdown form driven by a search -->
+        <input type="dropdown" token="to">
+            <label>Select to address</label>
+            <choice value="*">Any</choice>
+            <search>
+              <query>
+                index=sample | stats count by to
+              </query>
+            </search>
+            <fieldForValue>to</fieldForValue>
+            <fieldForLabel>to</fieldForLabel>
+        </input>
+    </fieldset>
+
+    <row>
+        <!-- output the results as a 50 row events view -->
+        <event>
+            <title>Results</title>
+            <option name="count">50</option>
+            <search base="sample_search"></search>
+        </event>
+    </row>
+</form>

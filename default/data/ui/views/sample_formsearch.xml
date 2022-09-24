@@ -1,0 +1,24 @@
+<form version="1.1">
+  <label>Sample form search</label>
+  
+  <!-- define master search template, with replacement tokens delimited with $. This is an example, replace with your own search.-->
+  <search id="sample_search">
+    <query>index=sample from="$from$"</query>
+  </search>
+
+  <fieldset>
+      <!-- the default is a text box, with no seed value; if user does not input
+          a value, then the $from$ token in searchTemplate will be removed -->
+      <input type="text" token="from" />
+  </fieldset>
+  
+  <row>
+      <!-- output the results as a 50 row events view -->
+      <event>
+            <title>Results</title>
+            <option name="count">50</option>
+            <search base="sample_search"></search>
+      </event>
+  </row>
+  
+</form>

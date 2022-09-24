@@ -1,0 +1,32 @@
+<form version="1.1">
+    <label>Sample radio</label>
+
+    <!-- Define master search template, with replacement tokens delimited with $ -->
+    <search id="sample_search">
+      <query>index=sample from="$from$"</query>
+    </search>
+
+    <fieldset>
+        <!-- Define a radio button list, populated from a search. searchWhenChanged propagates any change in selection immediatly to the results. -->
+        <input type="radio" token="from" searchWhenChanged="true">
+            <label>Select from address</label>
+            <choice value="*">Any</choice>
+            <search>
+              <query>
+                index=sample | top from | stats count by from
+              </query>
+            </search>
+            <fieldForValue>from</fieldForValue>
+            <fieldForLabel>from</fieldForLabel>
+        </input>
+    </fieldset>
+
+    <row>
+        <!-- output the results as a 50 row events view -->
+        <event>
+            <title>Results</title>
+            <option name="count">50</option>
+            <search base="sample_search"></search>
+        </event>
+    </row>
+</form>
