@@ -1,0 +1,5 @@
+[deployment-client]
+
+[target-broker:deploymentServer]
+targetUri = deploymentserver.splunk.mycompany.com:8089
+clientName = Forwarder1
